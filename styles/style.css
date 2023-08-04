@@ -27,20 +27,21 @@ Context box is required or else it will get complicated with the border
   display: flex;
   flex-wrap: wrap;
   box-sizing: content-box;
-  border: 1px solid;
-
-  background-color: white;
+  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.8);
 
   margin: 0 auto;
-  width: 800px;
+  width: 640px;
+  min-width: 640px;
 }
 
 /* 
 Changes the size of the individual divs.
 */
-#canvas-container div {
-  width: 50px;
-  height: 50px;
+#canvas-container > div {
+  background-color: white;
+
+  width: 40px;
+  height: 40px;
 }
 
 .menu {
@@ -49,13 +50,8 @@ Changes the size of the individual divs.
   justify-content: center;
   align-items: center;
 
-  border: 1px solid rgb(88, 88, 88);
-  border-radius: 5px;
-  background-color: rgb(146, 146, 146);
-
   width: 200px;
   margin-left: auto;
-  margin-right: auto;
   padding: 10px;
 }
 
@@ -68,13 +64,20 @@ Changes the size of the individual divs.
   font-family: "REM", sans-serif;
   font-size: 15px;
   border-radius: 20px;
-  background-color: rgb(177, 177, 177);
+  background-color: white;
 
   padding: 10px;
-  width: 100px;
+  width: 120px;
   height: 50px;
 }
 
 .menu-button:hover {
-  background-color: rgb(211, 211, 211);
+  background-color: rgb(71, 71, 71);
+  color: white;
+}
+
+.title {
+  font-size: 50px;
+  color: rgb(71, 71, 71);
+  text-align: center;
 }

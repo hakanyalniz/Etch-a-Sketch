@@ -1,6 +1,8 @@
 const canvasContainer = document.getElementById("canvas-container"); // // All of the divs are created inside the container
 let clearButton = document.getElementById("clear-button");
 let colorPicker = document.getElementById("colorPicker");
+let sizePicker = document.getElementById("size-button");
+
 let currentColor = "black"; // default color is black
 
 // Is needed to check whether the user has pressed down the mouse button or released it yet
@@ -35,8 +37,29 @@ function clearCanvas() {
   }
 }
 
+function removeCanvas() {
+  while (canvasContainer.firstChild) {
+    canvasContainer.removeChild(canvasContainer.firstChild);
+  }
+}
+
 function changeColor() {
   currentColor = colorPicker.value;
+}
+
+function changeSize() {
+  let size = prompt("Please enter canvas size! (exp: 16 means 16x16)");
+  removeCanvas();
+
+  createDiv(size);
+
+  // let canvasDiv = document.querySelectorAll(".canvas-div");
+
+  // for (const childDiv of canvasDiv) {
+  //   childDiv.style.width = "30px";
+  //   childDiv.style.height = "30px";
+  //   console.log(childDiv);
+  // }
 }
 
 // Change the below parameter to change the gridSize
@@ -70,6 +93,12 @@ clearButton.addEventListener("click", () => {
   clearCanvas();
 });
 
+// Changes color
 colorPicker.addEventListener("input", function () {
   changeColor();
+});
+
+// Changes canvas size
+sizePicker.addEventListener("click", function (event) {
+  changeSize();
 });
