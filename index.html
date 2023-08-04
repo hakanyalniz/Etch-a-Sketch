@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch A Sketch</title>
+    <link rel="icon" type="image/x-icon" href="./images/favicon.svg">
+
 
     <link rel="stylesheet" href="./styles/style.css">
 
@@ -14,9 +16,26 @@
 </head>
 
 <body>
-    <div id="canvas-container">
+    <div class="flex-container">
+        <div class="menu">
+            <button type="button" class="menu-button" id="clear-button">Clear</button>
+            <div class="color-picker">
+                <input type="color" id="colorPicker" name="colorPicker" value="#000000" />
+                <label for="Pencil">Color Picker</label>
+            </div>
+        </div>
+
+        <div id="canvas-container">
+
+        </div>
+
+        <div class="menu">
+            <p>Hello</p>
+        </div>
+
 
     </div>
+
 
 
     <script type="text/javascript" src="./scripts/script.js"></script>

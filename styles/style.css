@@ -1,12 +1,22 @@
+/* :root {
+} */
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: rgb(224, 224, 224);
+  background-image: url(../images/60degree_gray.png);
   font-family: "REM", sans-serif;
   margin: 0;
   padding: 0;
+
+  margin-top: 30px;
+}
+
+.flex-container {
+  display: flex;
+  flex: auto;
 }
 
 /* 
@@ -18,10 +28,11 @@ Context box is required or else it will get complicated with the border
   flex-wrap: wrap;
   box-sizing: content-box;
   border: 1px solid;
-  width: 800px;
+
+  background-color: white;
 
   margin: 0 auto;
-  margin-top: 30px;
+  width: 800px;
 }
 
 /* 
@@ -30,4 +41,40 @@ Changes the size of the individual divs.
 #canvas-container div {
   width: 50px;
   height: 50px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid rgb(88, 88, 88);
+  border-radius: 5px;
+  background-color: rgb(146, 146, 146);
+
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
+.menu > * {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.menu-button {
+  font-family: "REM", sans-serif;
+  font-size: 15px;
+  border-radius: 20px;
+  background-color: rgb(177, 177, 177);
+
+  padding: 10px;
+  width: 100px;
+  height: 50px;
+}
+
+.menu-button:hover {
+  background-color: rgb(211, 211, 211);
 }

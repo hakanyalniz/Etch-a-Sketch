@@ -1,5 +1,8 @@
-// All of the divs are created inside the container
-const canvasContainer = document.getElementById("canvas-container");
+const canvasContainer = document.getElementById("canvas-container"); // // All of the divs are created inside the container
+let clearButton = document.getElementById("clear-button");
+let colorPicker = document.getElementById("colorPicker");
+let currentColor = "black"; // default color is black
+
 // Is needed to check whether the user has pressed down the mouse button or released it yet
 // We need this so the canvas only draws when the mouse is hold down
 let mouseCondition = false;
@@ -19,11 +22,21 @@ function createDiv(gridSize) {
 
 // Is responsible for drawing, makes the backgroundColor to black
 // Later on add a way of changing the color from UI
-
 function canvasWrite(event) {
   console.log(event.currentTarget);
 
-  event.target.style.backgroundColor = "black";
+  event.target.style.backgroundColor = currentColor;
+}
+
+// Removes the style attribute and clears the canvas
+function clearCanvas() {
+  for (const child of canvasContainer.children) {
+    child.removeAttribute("style");
+  }
+}
+
+function changeColor() {
+  currentColor = colorPicker.value;
 }
 
 // Change the below parameter to change the gridSize
@@ -50,4 +63,13 @@ canvasContainer.addEventListener("mousedown", (event) => {
 });
 canvasContainer.addEventListener("mouseup", () => {
   mouseCondition = false;
+});
+
+// The button responsible for clearing the canvas, calls clearCanvas
+clearButton.addEventListener("click", () => {
+  clearCanvas();
+});
+
+colorPicker.addEventListener("input", function () {
+  changeColor();
 });
