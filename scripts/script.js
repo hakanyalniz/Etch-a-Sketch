@@ -48,18 +48,20 @@ function changeColor() {
 }
 
 function changeSize() {
+  let canvasHeight = canvasContainer.offsetHeight;
+  let canvasWidth = canvasContainer.offsetWidth;
   let size = prompt("Please enter canvas size! (exp: 16 means 16x16)");
   removeCanvas();
-
   createDiv(size);
 
-  // let canvasDiv = document.querySelectorAll(".canvas-div");
+  let canvasDivHeight = canvasHeight / size; // This allows us to size the boxes just right so they fit inside the canvas
+  let canvasDiv = document.querySelectorAll(".canvas-div");
 
-  // for (const childDiv of canvasDiv) {
-  //   childDiv.style.width = "30px";
-  //   childDiv.style.height = "30px";
-  //   console.log(childDiv);
-  // }
+  for (const childDiv of canvasDiv) {
+    childDiv.style.width = `${canvasDivHeight}px`;
+    childDiv.style.height = `${canvasDivHeight}px`;
+    console.log(childDiv);
+  }
 }
 
 // Change the below parameter to change the gridSize

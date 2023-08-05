@@ -31,7 +31,9 @@ Context box is required or else it will get complicated with the border
 
   margin: 0 auto;
   width: 640px;
+  max-width: 640px;
   min-width: 640px;
+  min-height: 640px;
 }
 
 /* 
