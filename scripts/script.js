@@ -3,6 +3,7 @@ let clearButton = document.getElementById("clear-button");
 let colorPicker = document.getElementById("colorPicker");
 let sizePicker = document.getElementById("size-button");
 let eraserButton = document.getElementById("eraser-button");
+let addColor = document.getElementById("palette-button");
 let colorPalette = document.getElementById("colorPalette"); // This one references the container
 
 let ordinaryColorArray = []; // This one is a pure JS array, does not have connection to the HTML
@@ -28,8 +29,6 @@ function createDiv(gridSize) {
 // Is responsible for drawing, makes the backgroundColor to black
 // Later on add a way of changing the color from UI
 function canvasWrite(event) {
-  console.log(event.currentTarget);
-
   event.target.style.backgroundColor = currentColor;
 }
 
@@ -52,26 +51,12 @@ function changeColor(color = null) {
   if (color != null) {
     currentColor = color;
   } else {
-    let colorPaletteArray = Array.from(paletteBoxes);
-
-    ordinaryColorArray.unshift(colorPicker.value); // All the selected colors go to this array
-
-    // Only cycles though the 6 elements of ordinaryColorArray, the rest are ignored
-    // The colorPaletteArray has the six color boxes from HTML, they are cycled through the same time and changed
-    // to the colors present in the ordinaryColorArray
-    // One key distinction, it appears as if the color palette is adding colors one by one in UI but in reality
-    // it updates the whole thing
-    for (let i = 0; i < 6; i++) {
-      colorPaletteArray[i].style.backgroundColor = ordinaryColorArray[i];
-    }
-
     currentColor = colorPicker.value;
   }
 }
 
 function changeSize() {
   let canvasHeight = canvasContainer.offsetHeight;
-  let canvasWidth = canvasContainer.offsetWidth;
   let size = prompt("Please enter canvas size! (exp: 16 means 16x16)");
   removeCanvas();
   createDiv(size);
@@ -82,6 +67,21 @@ function changeSize() {
   for (const childDiv of canvasDiv) {
     childDiv.style.width = `${canvasDivHeight}px`;
     childDiv.style.height = `${canvasDivHeight}px`;
+  }
+}
+
+function addColorPalette() {
+  let colorPaletteArray = Array.from(paletteBoxes);
+
+  ordinaryColorArray.unshift(colorPicker.value); // All the selected colors go to this array
+
+  // Only cycles though the 6 elements of ordinaryColorArray, the rest are ignored
+  // The colorPaletteArray has the six color boxes from HTML, they are cycled through the same time and changed
+  // to the colors present in the ordinaryColorArray
+  // One key distinction, it appears as if the color palette is adding colors one by one in UI but in reality
+  // it updates the whole thing
+  for (let i = 0; i < 6; i++) {
+    colorPaletteArray[i].style.backgroundColor = ordinaryColorArray[i];
   }
 }
 
@@ -131,4 +131,15 @@ sizePicker.addEventListener("click", function (event) {
 // An eraser, just calls changeColor with white
 eraserButton.addEventListener("click", function (event) {
   changeColor("white");
+});
+
+// Adds color to the palette
+addColor.addEventListener("click", function (event) {
+  addColorPalette();
+});
+
+colorPalette.addEventListener("click", function (event) {
+  if (event.target.className === "palBox") {
+    changeColor(event.target.style.backgroundColor);
+  }
 });
