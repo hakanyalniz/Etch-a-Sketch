@@ -19,6 +19,12 @@ body {
   flex: auto;
 }
 
+.title {
+  font-size: 50px;
+  color: rgb(71, 71, 71);
+  text-align: center;
+}
+
 /* 
 The canvas container that handles the way the canvas looks.
 Context box is required or else it will get complicated with the border
@@ -78,8 +84,14 @@ Changes the size of the individual divs.
   color: white;
 }
 
-.title {
-  font-size: 50px;
-  color: rgb(71, 71, 71);
-  text-align: center;
+#colorPalette {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 150px;
+}
+
+#colorPalette > div {
+  height: 50px;
+  width: 50px;
 }

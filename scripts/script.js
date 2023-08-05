@@ -2,9 +2,12 @@ const canvasContainer = document.getElementById("canvas-container"); // // All o
 let clearButton = document.getElementById("clear-button");
 let colorPicker = document.getElementById("colorPicker");
 let sizePicker = document.getElementById("size-button");
+let eraserButton = document.getElementById("eraser-button");
+let colorPalette = document.getElementById("colorPalette"); // This one references the container
 
+let ordinaryColorArray = []; // This one is a pure JS array, does not have connection to the HTML
+let paletteBoxes = colorPalette.children; // This one extracts the children, which are the 6 color boxes, of the palette on HTML
 let currentColor = "black"; // default color is black
-
 // Is needed to check whether the user has pressed down the mouse button or released it yet
 // We need this so the canvas only draws when the mouse is hold down
 let mouseCondition = false;
@@ -33,7 +36,7 @@ function canvasWrite(event) {
 // Removes the style attribute and clears the canvas
 function clearCanvas() {
   for (const child of canvasContainer.children) {
-    child.removeAttribute("style");
+    child.style.backgroundColor = "";
   }
 }
 
@@ -43,8 +46,27 @@ function removeCanvas() {
   }
 }
 
-function changeColor() {
-  currentColor = colorPicker.value;
+function changeColor(color = null) {
+  // Below is added to check if a color is manually given by something else
+  // such as eraser
+  if (color != null) {
+    currentColor = color;
+  } else {
+    let colorPaletteArray = Array.from(paletteBoxes);
+
+    ordinaryColorArray.unshift(colorPicker.value); // All the selected colors go to this array
+
+    // Only cycles though the 6 elements of ordinaryColorArray, the rest are ignored
+    // The colorPaletteArray has the six color boxes from HTML, they are cycled through the same time and changed
+    // to the colors present in the ordinaryColorArray
+    // One key distinction, it appears as if the color palette is adding colors one by one in UI but in reality
+    // it updates the whole thing
+    for (let i = 0; i < 6; i++) {
+      colorPaletteArray[i].style.backgroundColor = ordinaryColorArray[i];
+    }
+
+    currentColor = colorPicker.value;
+  }
 }
 
 function changeSize() {
@@ -60,7 +82,6 @@ function changeSize() {
   for (const childDiv of canvasDiv) {
     childDiv.style.width = `${canvasDivHeight}px`;
     childDiv.style.height = `${canvasDivHeight}px`;
-    console.log(childDiv);
   }
 }
 
@@ -79,6 +100,8 @@ canvasContainer.addEventListener("mouseover", function (event) {
     canvasWrite(event);
   }
 });
+
+// Event listeners
 
 // Checks mouse condition so we can only draw when the mouse is pressed down,
 // which is indicated by mouseCondition
@@ -103,4 +126,9 @@ colorPicker.addEventListener("input", function () {
 // Changes canvas size
 sizePicker.addEventListener("click", function (event) {
   changeSize();
+});
+
+// An eraser, just calls changeColor with white
+eraserButton.addEventListener("click", function (event) {
+  changeColor("white");
 });
