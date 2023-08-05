@@ -30,6 +30,8 @@ The canvas container that handles the way the canvas looks.
 Context box is required or else it will get complicated with the border
  */
 #canvas-container {
+  cursor: url("../images/pencil.svg"), default;
+
   display: flex;
   flex-wrap: wrap;
   box-sizing: content-box;
