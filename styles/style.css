@@ -97,3 +97,22 @@ Changes the size of the individual divs.
   height: 50px;
   width: 50px;
 }
+
+.footer {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer img {
+  height: 20px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: inherit;
+}
